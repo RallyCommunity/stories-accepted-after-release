@@ -1,9 +1,9 @@
-Stories Accepted After Release
+Stories and Defects Accepted After Release
 =========================
 
 ## Overview
 
-![](pic.png)
+![](pic2.png)
 
 This app is not part of Rally App Catalog and is not supported by Rally. It is available AS IS.
 

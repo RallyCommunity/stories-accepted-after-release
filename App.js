@@ -22,10 +22,12 @@ Ext.define('CustomApp', {
         var releaseRef = release.get('_ref');
         var releaseDate = release.get('ReleaseDate');
         var releaseDateISO = Rally.util.DateTime.toIsoString(releaseDate,true);
-        console.log('loading stories scheduled for the release with release date:', releaseDateISO);
+        console.log('loading stories (and defects) scheduled for the release with release date:', releaseDateISO);
 
-        var myStore = Ext.create('Rally.data.wsapi.Store',{
-            model: 'User Story',
+        //var myStore = Ext.create('Rally.data.wsapi.Store',{   //use with one model type
+        var myStore = Ext.create('Rally.data.wsapi.artifact.Store',{
+            //model: 'User Story',
+            models: ['Defect', 'UserStory'],
             autoLoad:true,
             fetch: ['Name','FormattedID','ScheduleState','Release','ReleaseDate','AcceptedDate','Project'],
             filters:[
@@ -66,7 +68,7 @@ Ext.define('CustomApp', {
     _createGrid: function(myStore){
         var that = this;
         this._myGrid = Ext.create('Ext.grid.Panel', {
-            title: 'Stories accepted after Release Date',
+            title: 'Stories and Defects accepted after Release Date',
             store: myStore,
             columns: [
                 {
